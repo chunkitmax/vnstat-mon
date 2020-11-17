@@ -79,7 +79,7 @@ const VnstatIndicator = new Lang.Class({
 
     let interface = settings.get_string('interface') || _("wlp3s0");
 
-    cmd = "sh -c \"vnstat -i " + interface + " -d -s | grep today | awk '{printf \\\"%s %s\\\", $8, $9}'\"";
+    cmd = "sh -c \"vnstat -i " + interface + " -d -s | grep today | awk '{printf \\\"↓ %s %s / ↑ %s %s\\\", $2, $3, $5, $6}'\"";
     let [res, out, err] = GLib.spawn_command_line_sync(cmd);
 
     if (out.toString().length > 0) {
